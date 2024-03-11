@@ -39,14 +39,14 @@ public class tgacController {
         return service.makeAll();
     }
 
-    @GetMapping("/readbyid/{id}")
-    public tgacEntity readone(@PathVariable("id") int id) {
-        return service.findone(id);
+    @GetMapping("/read/{id}")
+    public tgacEntity read(@PathVariable("id") int id) {
+        return service.makereadone(id);
     }
 
-    @DeleteMapping("/deletebyid/{id}")
-    public void deleteone(@PathVariable("id") int id) {
-        service.deletebyid(id);
+    @DeleteMapping("/deleteone/{id}")
+    public String remove(@PathVariable("id") int id) {
+        return service.remove(id) + "";
     }
 
     @PutMapping("/updating")

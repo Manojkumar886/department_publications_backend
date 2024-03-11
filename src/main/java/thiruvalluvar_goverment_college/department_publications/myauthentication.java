@@ -34,7 +34,7 @@ public class myauthentication {
     public SecurityFilterChain prabakaran(HttpSecurity hp) throws Exception {
         hp
                 .authorizeHttpRequests()
-                .requestMatchers("/department_publications/*")
+                .requestMatchers("/department_publications/**")
                 .authenticated();
         hp.csrf().disable();
         hp.cors();

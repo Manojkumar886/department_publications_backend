@@ -19,12 +19,14 @@ public class tgacService {
         return repo.findAll();
     }
 
-    public tgacEntity findone(int serialno) {
+    public tgacEntity makereadone(int serialno) {
         return repo.findById(serialno).orElse(new tgacEntity());
     }
 
-    public void deletebyid(int id) {
-        repo.deleteById(id);
+    public String remove(int id) {
+        tgacEntity temp = repo.findById(id).orElse(new tgacEntity());
+        repo.delete(temp);
+        return temp.getIsbnno_issnno() + " has been deleted successfully";
     }
 
     public List<tgacEntity> findusingisbn(String name) {
