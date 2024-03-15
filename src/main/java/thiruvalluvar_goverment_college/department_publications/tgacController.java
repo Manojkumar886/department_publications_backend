@@ -67,4 +67,35 @@ public class tgacController {
         return service.ascendingorderbyyear();
     }
 
+    // CONFERENCE MAPPING
+    @Autowired
+    conferenceService conservice;
+
+    @PostMapping("/conferencecreate")
+    public String postMethodName(@RequestBody conferenceEntity conferencedetails) {
+        return conservice.conferenceCreate(conferencedetails).getConferencename() + " has been added successfully";
+    }
+
+    @GetMapping("/conferencelist")
+    public List<conferenceEntity> conferencelist() {
+        return conservice.conferenceList();
+    }
+
+    @GetMapping("/conferenceread/{id}")
+    public conferenceEntity conferenceread(@PathVariable("id") int id) {
+        return conservice.conferenceread(id);
+    }
+
+    @DeleteMapping("/deleteconference/{id}")
+    public String conferenceremove(@PathVariable("id") int id) {
+        return conservice.conferencedelete(id) + "";
+    }
+
+    @PutMapping("/updateconference")
+    public String updateconference(@RequestBody conferenceEntity conferencedetails) {
+        conferenceEntity temp = conferencedetails;
+        conservice.conferenceCreate(temp);
+        return temp.getAuthor() + " has been updated successfully";
+    }
+
 }
