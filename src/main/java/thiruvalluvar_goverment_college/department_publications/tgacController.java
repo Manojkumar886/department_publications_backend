@@ -73,7 +73,7 @@ public class tgacController {
 
     @PostMapping("/conferencecreate")
     public String postMethodName(@RequestBody conferenceEntity conferencedetails) {
-        return conservice.conferenceCreate(conferencedetails).getConferencename() + " has been added successfully";
+        return conservice.conferenceCreate(conferencedetails).getAuthor() + " has been added successfully";
     }
 
     @GetMapping("/conferencelist")
@@ -96,6 +96,37 @@ public class tgacController {
         conferenceEntity temp = conferencedetails;
         conservice.conferenceCreate(temp);
         return temp.getAuthor() + " has been updated successfully";
+    }
+
+    // BOOKS MAPPING
+
+    @Autowired
+    booksService bookservice;
+
+    @PostMapping("/bookscreate")
+    public String createbook(@RequestBody booksentity bookdetails) {
+        return bookservice.bookcreate(bookdetails).getAuthor() + " has been added successfully";
+    }
+
+    @PutMapping("/bookupdate")
+    public String updatebook(@RequestBody booksentity bookdetails) {
+        booksentity temp = bookdetails;
+        return bookservice.bookcreate(temp).getAuthor() + " has been updated done";
+    }
+
+    @GetMapping("/booklistall")
+    public List<booksentity> listallbooks() {
+        return bookservice.booklist();
+    }
+
+    @GetMapping("/bookread/{serialno}")
+    public booksentity readbook(@PathVariable("serialno") int serialno) {
+        return bookservice.bookread(serialno);
+    }
+
+    @DeleteMapping("/bookdelete/{serialno}")
+    public String deletebook(@PathVariable("serialno") int serialno) {
+        return bookservice.bookdelete(serialno) + " ";
     }
 
 }
