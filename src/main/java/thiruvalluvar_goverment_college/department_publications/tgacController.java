@@ -98,6 +98,10 @@ public class tgacController {
         return temp.getAuthor() + " has been updated successfully";
     }
 
+    @GetMapping("/findbyauthorusingconference/{author}")
+    public List<conferenceEntity> findbyauthorconference(@PathVariable("author") String author) {
+        return conservice.findbyauthor(author);
+    }
     // BOOKS MAPPING
 
     @Autowired

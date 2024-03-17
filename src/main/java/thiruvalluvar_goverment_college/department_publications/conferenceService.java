@@ -28,4 +28,8 @@ public class conferenceService {
         repo.delete(temp);
         return temp.getConferencename() + " has been deleted successfully";
     }
+
+    public List<conferenceEntity> findbyauthor(String author) {
+        return repo.findByAuthor(author);
+    }
 }
