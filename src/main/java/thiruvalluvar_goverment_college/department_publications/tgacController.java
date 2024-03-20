@@ -133,4 +133,32 @@ public class tgacController {
         return bookservice.bookdelete(serialno) + " ";
     }
 
+    // Seminar Performance
+    @Autowired
+    seminarService semiservice;
+
+    @PostMapping("/createseminar")
+    public seminarEntity seminarcreate(@RequestBody seminarEntity seminardetails) {
+        return semiservice.createseminar(seminardetails);
+    }
+
+    @GetMapping("/listallseminar")
+    public List<seminarEntity> seminarlist() {
+        return semiservice.listseminar();
+    }
+
+    @GetMapping("/readseminar/{serialno}")
+    public seminarEntity seminarread(@PathVariable("serialno") int serialno) {
+        return semiservice.readseminar(serialno);
+    }
+
+    @DeleteMapping("/deleteseminar/{serialno}")
+    public String seminardelete(@PathVariable("serialno") int serialno) {
+        return semiservice.deleteseminar(serialno);
+    }
+
+    @PutMapping("/updateseminar")
+    public String seminarupdate(@RequestBody seminarEntity seminardetail) {
+        return semiservice.createseminar(seminardetail).getSeminarname() + " has been updated successfully";
+    }
 }
